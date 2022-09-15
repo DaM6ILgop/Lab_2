@@ -27,7 +27,7 @@ public:
 
 		init_Massive_1D();//вызов инициализации массива после resize вектора
 	}
-	//------------------------
+	//------------------------_
 	void PrintVector() {
 
 		for (int i = 0; i < vector.size(); i++) {

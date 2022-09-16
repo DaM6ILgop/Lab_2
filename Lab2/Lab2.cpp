@@ -40,6 +40,10 @@ public:
 	auto GetVector() {
 		return vector;
 	}
+	//Деструктор класса
+	~Vector() {
+		vector.clear();
+	}
 };
 
 class Matrix {
@@ -50,7 +54,6 @@ public:
 		size = _size;
 		init_Matrix(vector);
 	}
-
 	void PrintMatrix() {
 
 		for (int i = 0; i < size; i++) {
@@ -66,6 +69,10 @@ public:
 			cout << endl;
 		}
 
+	}
+	//Деструктор класса
+	~Matrix(){
+		delete[] matrix;
 	}
 private:
 	int size =0;	double** matrix;

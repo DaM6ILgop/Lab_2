@@ -103,7 +103,7 @@ int main(){
 
 		if (fields[i].GetMusicalInstruments(fields[i]) == "Пианино") {
 
-			temp = fields[i];//////
+			temp = fields[i];///////
 			
 			fields[i].Print(temp);
 		}

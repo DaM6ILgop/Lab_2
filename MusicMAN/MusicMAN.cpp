@@ -1,8 +1,9 @@
-﻿
-#include <iostream>
+﻿#include <vector>
 #include <iomanip>
-#include <vector> 
-#include <random>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <Windows.h>
 #include <algorithm>
 
 
@@ -41,14 +42,14 @@ public:
 
 	void Print(Human human) {
 		cout << "\n";
-		cout << "Возраст: " << human.age
-			<< "\n" << "Имя:" << human.name
+		cout<< "\n" << "Имя:" << human.name
 			<< "\nОтчество: " << human.fatherName
 			<< "\nПол: " << human.sex
 			<< "\nВозраст: " << human.age
 			<< "\nМузыкальный инструмент: " << human.musicalInstruments
 			<< "\nБалы учасника: " << human.performanceScore;
 		cout << "\n";
+			
 	}
 	
 	int GetScore(Human human) {
@@ -56,6 +57,69 @@ public:
 	}
 	string GetMusicalInstruments(Human human) {
 		return musicalInstruments;
+	}
+
+	void Serialize(string filename, Human human) {
+		fstream fstream;
+		SetConsoleCP(1251);
+		fstream.open(filename, fstream.in | fstream.app);
+		if (!fstream.is_open()) {
+			cout << "Файла не существует" << endl;
+			exit(0);
+		}
+		else {
+			cout << "Данные успешно записаны в файл";
+			
+				fstream << name << "\n" 
+				<< fatherName << "\n"
+				<< sex << "\n"
+				<< age << "\n" 
+				<< musicalInstruments << "\n" 
+				<< performanceScore;
+	
+				fstream.close();
+		}
+		
+		SetConsoleCP(866);
+	}
+
+	void Deserialize(string filename) {
+		/*fstream fs;*/
+		ifstream out;
+		out.open(filename);
+		if (!out.is_open()) {
+			cout << "Ошибка открытия файла!" << std::endl;
+			exit(0);
+		}
+		else {
+			while (getline(out, filename)) {
+				string name_;
+				string fatherName_;
+				string sex_;
+				int age_;
+				string musicalInstruments_;
+				int performanceScore_;
+				out	>> name_
+					>> fatherName_ 
+					>> sex_ 
+					>> age_ 
+					>> musicalInstruments_ 
+					>> performanceScore_;
+					
+
+				cout << "\n";
+				cout<< "\n" << "Имя:" << name_
+					<< "\nОтчество: " << fatherName_
+					<< "\nПол: " << sex_
+					<< "\nВозраст: " << age_
+					<< "\nМузыкальный инструмент: " << musicalInstruments_
+					<< "\nБалы учасника: " << performanceScore_;
+				cout << "\n"<<endl;
+					
+				out.close();
+			}
+			
+		}
 	}
 	~Human() {};
 };
@@ -108,6 +172,7 @@ int main(){
 			fields[i].Print(temp);
 		}
 	}
+
 	for (int i = 0; i < fields.size()-1; i++) {
 		
 		if (fields[i].GetMusicalInstruments(fields[i]) == "Пианино") {
@@ -115,6 +180,39 @@ int main(){
 			fields.erase(fields.begin() + i);//удаление объектов 
 		}
 		fields[i].Print(fields[i]);//вывод
+		continue;
 	}
+
+	int yourAction;
+	
+	string path = "Musician.txt";
+	cout << "\n1 - запись в файл, 2 - вывод на консоль содержимого файла\n";
+	cin >> yourAction;
+	Human newHuman;
+	bool flag = true;
+	
+		switch (yourAction) {
+
+		case 1:
+			fields[fields.size() - 1].Serialize(path, fields[fields.size() - 1]);
+			break;
+		case 2:
+
+			for (size_t i = 0; i < fields.size(); i++)
+			{
+
+				fields[i].Deserialize(path);
+			}
+
+			break;
+		case 3:
+			flag = false;
+			break;
+		default:
+			cout << "NOT FOUND" << endl;
+			break;
+		}
+	
+	
 	
 }

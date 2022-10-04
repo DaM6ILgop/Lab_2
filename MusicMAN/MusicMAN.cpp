@@ -59,7 +59,7 @@ public:
 		return musicalInstruments;
 	}
 
-	void Serialize(string filename, Human human) {
+	void Serialize(string filename, Human human) {//запись в файл
 		fstream fstream;
 		SetConsoleCP(1251);
 		fstream.open(filename, fstream.in | fstream.app);
@@ -83,7 +83,7 @@ public:
 		SetConsoleCP(866);
 	}
 
-	void Deserialize(string filename) {
+	void Deserialize(string filename) {//десериализатор
 		/*fstream fs;*/
 		ifstream out;
 		out.open(filename);
@@ -206,5 +206,4 @@ int main(){
 			cout << "NOT FOUND" << endl;//Дефолтное значение
 		break;
 	}
-	
 }

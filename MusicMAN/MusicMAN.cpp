@@ -152,7 +152,7 @@ int main(){
 
 	Human ms4("Николай", "Басков", "Муж", 90, "Скрипка",SetScore());
 
-	Human ms5("Алексей", "Калоша", "Муж", 19, "Кларнет", SetScore());
+	Human ms5("Мерил", "ICE", "Жен", 19, "Кларнет", SetScore());
 
 	fields.push_back(ms);
 	fields.push_back(ms2);
@@ -195,7 +195,7 @@ int main(){
 	switch (yourAction) {
 
 		case 1:
-			fields[fields.size() - 1].Serialize(path, fields[fields.size() - 1]);
+			fields[fields.size()-1].Serialize(path, fields[fields.size()]);
 		break;
 
 		case 2:

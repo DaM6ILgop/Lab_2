@@ -168,7 +168,7 @@ int main(){
 
 		if (fields[i].GetMusicalInstruments(fields[i]) == "Пианино") {
 
-			temp = fields[i];///////
+			temp = fields[i];
 			
 			fields[i].Print(temp);
 		}
@@ -189,13 +189,10 @@ int main(){
 	string path = "Musician.txt";
 	cout << "\n1 - запись в файл, 2 - вывод на консоль содержимого файла\n";
 	cin >> yourAction;
-	Human newHuman;
-	bool flag = true;
-	
 	switch (yourAction) {
 
 		case 1:
-			fields[fields.size()-1].Serialize(path, fields[fields.size()]);
+			fields[fields.size()-1].Serialize(path, fields[fields.size()-1]);
 		break;
 
 		case 2:
@@ -206,7 +203,7 @@ int main(){
 		break;
 
 		default:
-			cout << "NOT FOUND" << endl;
+			cout << "NOT FOUND" << endl;//Дефолтное значение
 		break;
 	}
 	

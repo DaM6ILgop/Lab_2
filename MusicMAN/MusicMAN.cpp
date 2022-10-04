@@ -99,6 +99,7 @@ public:
 				int age_;
 				string musicalInstruments_;
 				int performanceScore_;
+
 				out	>> name_
 					>> fatherName_ 
 					>> sex_ 
@@ -191,27 +192,23 @@ int main(){
 	Human newHuman;
 	bool flag = true;
 	
-		switch (yourAction) {
+	switch (yourAction) {
 
 		case 1:
 			fields[fields.size() - 1].Serialize(path, fields[fields.size() - 1]);
-			break;
+		break;
+
 		case 2:
-
-			for (size_t i = 0; i < fields.size(); i++)
-			{
-
+			for (size_t i = 0; i < fields.size(); i++){
+			
 				fields[i].Deserialize(path);
 			}
+		break;
 
-			break;
-		case 3:
-			flag = false;
-			break;
 		default:
 			cout << "NOT FOUND" << endl;
-			break;
-		}
+		break;
+	}
 	
 	
 	
